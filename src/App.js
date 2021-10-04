@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+
+
+import HomePage from './pages/Home';
+import CatalogPage from './pages/Catalog';
+import PaymentPage from './pages/Payment';
+import AboutPage from './pages/About';
+import Layout from './components/layout/Layout';
+import AddNewCar from './pages/AddNewCar';
+import { CarProvider } from './components/store/CarContext'
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CarProvider>
+      <Layout>
+        <Switch> 
+          <Route path='/' exact>
+            <HomePage />
+          </Route>
+          <Route path='/catalog'>
+            <CatalogPage />
+          </Route>
+          <Route path='/payment'>
+            <PaymentPage />
+          </Route>
+          <Route path='/about'>
+            <AboutPage />
+          </Route>
+          <Route path='/addNewCar'>
+            <AddNewCar />
+          </Route>
+        </Switch> 
+      </Layout> 
+    </CarProvider>
   );
 }
 
